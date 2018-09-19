@@ -6,7 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = [
-        'user_id', 'name', 'price', 'description', 'image'    
-    ];
+    protected $guarded = [];
+    
+    public function purchases()
+    {
+        return $this->hasMany('App\Purchase');
+    }
+    
+    public function stocks()
+    {
+        return $this->hasMany('App\Stock');
+    }
+    
+    public function sells()
+    {
+        return $this->hasMany('App\Sell');
+    }
 }
