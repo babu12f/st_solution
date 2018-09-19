@@ -15,7 +15,7 @@
   
     <!-- Styles -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
     @yield('styles')
 </head>
 <body>
@@ -33,7 +33,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ secure_url('/') }}/"  target="_blank">
                         ST Solution
                     </a>
                 </div>
@@ -83,7 +83,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <!--<script src="{{ asset('js/app.js') }}"></script>-->
     @yield('scripts')
 </body>
 </html>
