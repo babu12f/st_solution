@@ -18,7 +18,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach($products as $product)
+                            @forelse($products as $product)
                               <tr>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->model }}</td>
@@ -29,7 +29,11 @@
                                     <a href="{{ url('products/')}}/{{$product->id}}/delete" class="btn btn-danger delete">Delete</a>
                                 </td>
                               </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td class="text-center" colspan="4"></td>
+                                </tr>
+                            @endforelse
                         </tbody>
                       </table>
                 </div>
