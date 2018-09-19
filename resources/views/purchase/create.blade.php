@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" href="{{asset('css/jquery-ui.css')}}" type="text/css" />
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -70,7 +74,7 @@
                         <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
                             <label for="product_id" class="col-md-4 control-label">Product ID</label>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <input id="product_id" type="text" class="form-control" name="product_id" value="{{old('product_id')}}" />
 
                                 @if ($errors->has('product_id'))
@@ -80,7 +84,7 @@
                                 @endif
                             </div>
                             
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <input id="product_name" type="text" class="form-control" 
                                 name="product_name" value="{{old('product_name')}}"
                                 placeholder="Type Product Name to Find Product ID " />
@@ -103,10 +107,49 @@
 @endsection
 
 @section('scripts')
+<script type="text/javascript" src="{{asset('js/jquery-ui.js')}}"></script>
 <script>
     
     $(function(){
-        //alert('alk');
+        
+        $('#product_name').on('focus', function(){
+            $(this).select();
+        });
+        
+        /*
+        * Autocomplete suggestion for product
+        */
+        var find_product_url = "{{url('/products/searchstockandprice')}}";
+        $("#product_name").autocomplete({
+            source: function(request, response){
+                $.ajax({
+                    url: "{{url('/products/search')}}",
+                    dataType: "json",
+                    data: {
+                        productName: request.term
+                    },
+                    success: function (data) {
+                        //console.log(data);
+                        response(data);
+                    },
+                    error: function(data){
+                        console.log("error");
+                    }
+                });
+            },
+            minLength: 1,
+            select: function (event, ui) {
+                //console.log("Selected: " + ui.item.Name + " aka " + ui.item.Id);
+                //console.log(ui);
+                var p_id = ui.item.id;
+                $('#product_id').val(p_id);
+            }
+        });
+
+        //=================== End autocomplete Products ===============================
+
+
+        
     });
     
 </script>>
