@@ -21,7 +21,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($purchases as $purchase)
+                            @forelse($purchases as $purchase)
                               <tr>
                                 <td>{{ $purchase->product->name }}</td>
                                 <td>{{ $purchase->supplier }}</td>
@@ -34,7 +34,11 @@
                                     <a href="{{ url('purchase/')}}/{{$purchase->id}}/delete" class="btn btn-danger delete">Delete</a>
                                 </td>
                               </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td class="text-center" colspan="7"></td>
+                                </tr>
+                            @endforelse
                         </tbody>
                       </table>
                 </div>
