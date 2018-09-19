@@ -29,6 +29,10 @@ Route::get('/sells/create', 'SellController@create');
 Route::post('/sells/create', 'SellController@store')->name('sell.create');
 Route::get('/sells/{id}/delete', 'SellController@destroy');
 
+// Stock Route
+Route::get('/stock', 'StockController@index');
+
+
 // Route::post('/scrap', 'ScrapController@index');
 
 Route::post('/koli', 'ScrapController@koli');

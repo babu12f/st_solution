@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Stock;
 
 class StockController extends Controller
 {
@@ -13,7 +14,9 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        $stocks = Stock::with('product')->get();
+        //return $stocks;
+        return view('stock.index', ['stocks'=>$stocks]);
     }
 
     /**

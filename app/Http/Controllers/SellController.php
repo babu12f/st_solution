@@ -45,6 +45,8 @@ class SellController extends Controller
             'customer' => 'required|min:3|max:255',
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
+            'stock' => 'required',
+            'total' => 'required'
         ]);
         
         $sell = Sell::create( $request->except(['stock','total', 'product_name']));
